@@ -1,0 +1,28 @@
+scrape_configs:
+  - job_name: 'prometheus-go'
+    static_configs:
+      - targets: ['172.17.0.1:9090']  # IP gateway Docker
+
+
+# Konfigurasi yang diberikan adalah bagian dari file konfigurasi Prometheus. Berikut adalah penjelasan rinci tentang setiap bagian dari konfigurasi ini:
+
+# ### 1. **`global`**
+#    Bagian ini mengatur pengaturan global yang akan diterapkan ke seluruh Prometheus. Dalam konfigurasi ini, terdapat pengaturan berikut:
+
+#    - **`scrape_internal: 15s`**
+#      Ini mengatur interval pengambilan data (scrape interval) dari target yang dimonitor. Artinya, Prometheus akan melakukan pengambilan data setiap **15 detik**.
+
+# ### 2. **`scrape_configs`**
+#    Bagian ini mendefinisikan berbagai pengaturan untuk mengumpulkan data dari berbagai target. Dalam hal ini, hanya ada satu konfigurasi `scrape_configs`.
+
+#    - **`job_name: 'prometheus-go'`**
+#      Ini mendefinisikan nama pekerjaan (job) untuk konfigurasi pengambilan data ini. Nama pekerjaan ini digunakan untuk mengidentifikasi pekerjaan ini di dalam Prometheus. Dalam hal ini, pekerjaan ini dinamai `prometheus-go`.
+
+#    - **`static_configs`**
+#      Ini adalah cara untuk mendefinisikan target secara statis (bukan dinamis). Target di sini adalah alamat yang akan dipantau oleh Prometheus untuk mengumpulkan data.
+
+#      - **`targets: ['host.docker.internal:9090']`**
+#        Ini adalah daftar target yang ingin dipantau oleh Prometheus. Dalam konfigurasi ini, targetnya adalah `host.docker.internal:9090`. Ini berarti Prometheus akan mencoba mengakses port 9090 pada alamat `host.docker.internal`, yang biasanya digunakan untuk mengakses layanan yang berjalan di dalam kontainer Docker dari mesin host.
+
+# ### Penjelasan Lengkap
+# Konfigurasi ini memberi tahu Prometheus untuk melakukan pemantauan pada target `host.docker.internal:9090` setiap 15 detik. Nama pekerjaan tersebut adalah `prometheus-go`, yang dapat digunakan untuk mengidentifikasi pekerjaan ini dalam pengaturan Prometheus atau di UI Prometheus. Target yang dimaksud adalah alamat yang merujuk ke aplikasi atau layanan yang berjalan di dalam kontainer Docker pada mesin lokal, yang mengakses port 9090.
